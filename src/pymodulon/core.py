@@ -1129,7 +1129,7 @@ class IcaData(object):
         """
 
         # Check that gene exists
-        if gene not in self.gene_names:
+        if gene not in self.X.index:
             gene = self.name2num(gene)
 
         return self.M.columns[self.M_binarized.loc[gene] == 1].to_list()
@@ -1160,7 +1160,7 @@ class IcaData(object):
 
         final_list = []
         for g in gene_list:
-            g_names = gene_table.gene_name.str.casefold()
+            g_names = gene_table.gene_name.apply(lambda x: x.casefold())
             loci = gene_table[g_names == g.casefold()].index
 
             # Ensure only one locus maps to this gene

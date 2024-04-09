@@ -195,7 +195,6 @@ def compute_regulon_enrichment(gene_set, regulon_str, all_genes, trn):
         logging.warning(
             "Some genes are in the regulon but not in all_genes. "
             "These genes are removed before enrichment analysis.",
-            category=UserWarning,
         )
         regulon = regulon & set(all_genes)
     result = compute_enrichment(gene_set, regulon, all_genes, regulon_str)
